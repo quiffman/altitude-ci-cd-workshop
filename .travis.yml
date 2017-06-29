@@ -1,28 +1,25 @@
 dist: trusty
 sudo: false
-
-# Only trigger builds on master/pr and release tags
 branches:
   only:
-    - master
-    - /^v?([0-9]*)\.([0-9]*)\.([0-9]*)$/
-
+  - master
+  - "/^v?([0-9]*)\\.([0-9]*)\\.([0-9]*)$/"
 env:
-  # This environment variable tells Terraform not to prompt for input. This is
-  # not required, but if we make a mistake, the Travis builder will hang waiting
-  # for user input, tieing up unnecessary resources.
+  matrix:
   - TF_INPUT=false
-
-# Install terraform
+  global:
+  - secure: RlNLVZOPR73Xvov3c0C9idJrRUKUd3Rjfp97Tw1RWwdfICrWWC87R0uMpc6hwnS1fhLSd1wVkjRct0OkLq6MoTyYmuWKmspXEnQPDUxIW/F6tFeWuqnIrk2fjLvEYnVW5/O1uGiWXxV6or5GA6tnX65+A3LnUB/iJ/3/wE9BZf3xkYAVci1cOgg0GtOqpG804LN5ZYINmrO9f4SNzKyQpUzEUqDOtAmwmSSWDjJE+6glJq7HhDtxxOhX+CIEJ6+GY9po3SIqQOJpKOIZZRQtTI5QVY8JO3dZ4pwCBq5KOnZq/isbaHOlFzDQkVU4A21GQ10usTp7Zw4a94cLodU5TnaSHs4I+3jmln78cXgeI6GdFwZh8PZBIVgjW4ISSAvcSExCdslxvEc2xk2lMktMexCNfdmyzOze30d0KM+MrOi/AQ6MbwFBuyzUQw/04ghwkpEjD76mElCcJGyW0T7AbB7cTYn9DDHigJvkm97LQPY65LhaKi67PiwI4EsYwJhE40EEvIVBi+tJC2NOmoQc73pbCvmu9i8y/YVQfyQbxLpCqUUbXpSNPsVU22RB92HxxCZmxllkgX92ASQSjoooLsTkLwNRbosbzfawz6/783aRm52PUdaVW1McmAgno0WyXS5w8Vr8oyU0WASjNfYeUaKXD1A7ZxC74OD2+8VCALg=
+  - secure: kJXNMhiPYnRwJi+0offMLfPRqaRtHq/znbDcwpHVtpquZEeoLXmzgx2vxl3J0m+niNQGqsZgszJgxiNWpG9B00dN7ig8EiDWkXr68ddEUfrJ3HC0udaPVVBc53tbGSqyBgUrEFGZiN5edE7oQG7EvPNNNRDbwFNZdKQJcB5auinNzp6xHHLhCg2re4l4hduQjQYzCIhBmDExMKUrv3XLEI2AgDRQsMs16vQltmzzI8kMT8YF584KYtJgDTwpYn0SpCpr7IftfDrshBu5Q1V2H907iEpS+Ua5OT8DjvEbVaE+fJsYhQHyJxo92BVHcZQDxd7yuWIUC182wf5Pn2jKziQq8LS3k6wXuj8sEluJ4CKST8Ekdl1NB21anisM/EoLRC4ltQ75wNzjb+CBXdO62GlJ4cRtx3fLanVkuWmq1Fu8Urgb/N72Fuh34MyLTG0Vas/TzDfqdOkQAKexD2F9KUWN7t8jHM3NJuR0YlBbizk5a8L+pkCWkHohQ0/SrSnzdB5GFwfOjeAP5DcTaLSzL93jLUw26+cEsS2jqsXkcbDJuzgUlFejrUDQfblUtoPYFb07j7N1AlX4Y+HNMOIhND7Uk1EQEkdPZWRYhVjBLcQVGg2BJMQ6c99qYYv4+kZPChNYFCXdeR9zwZEFjWEtM9CO1qOS2eyQca8yzg4n4CA=
+  - secure: QputmSiGXvDPpa1uZL8XhxmABl0ToO2GEVRBuEAnBgZwn0ik0JQzbvzfjpEPXuizj8mZUMUgr6AUZAxUz4o6RMR5Bah8164Dnjrv7y2PjH9XbAWHQ6ROvRCXJer+pDia+QFHrlsNa0U/sWgTV6JmUqj+l6kc8A1H52KoBe81m96bq5N4U0x1YoZ/jLs2rmdGgaGjY/V2pWeM+sc1M9uTrph4bKy/wfko3W4G3rjQJvNg5KYnIufeQ37FITnFKEfXwGNA4OYKC4eE6AHglIIA/z7/ac1QJyfpqCQdxmKFDT2SM3sCaQDKf9996NaIOfNWeeeeVaVFbRJVWPoYJMqDhwwMMx8Aq6vverJVonVVI6S+j48buci7+uItDi+9bcx3qVGd/kY3fQcFhQzeK8/x5A1fQozsK58WTSt0dY7QksAj4Nhb8Mul1MUxKgO7p0A3L4CGe7XFsvCsklEnf4rjZXItYKU8WPJC7z132s8ilf7IPtoITKsbWt8SZyfOJ6vzRS7dgipchd85AoSwO27+0oJcfx1Ow4gxEcwg1NYBYffENxNc+P1jZpfz6YoMakpp8f+OVCrFycWO2GijFyRT8DZY9A8fyPHyGuXXs/pwsyHvRGDa9jSzS/g3M7ZaJldEPPsH3ZJTw6k5ZapfE/RpFSEBgkULVa5H64yBYJuy7cE=
+  - secure: PRWMqMy5Hl+Nu4tuENGz6Z0wLrpEYsppuxPkBuo+PJRjSjmrue8ZOsY51Z+SAGV1WuJZo6npgmQtx6tjvEfQNl6Z2Uz8OytFApYDnDWg528JyeT3UULQTKmmEze0UlgnpoEts57npWuqGKb1bcO6K6PDtR7UJZkFR6XqpnWTWhIgzaq/EWTWGu1itY4rGqH94o+ONpgeEqFrZIYP2SvrWL4NkT/O985VSbciiNVPOswGhioq3fNIlb1PADabx30daH68FQjgFmT2Sy6spBOYpCFLjpr/iUnhUv8Ox84lrKszI/69h1az/3hXyXHT7uIvS17XW2bKHJTREuGXtzR77m3uY36LsjNaUktlCT+MudM+hwy+juRNyWMVVjuGXZRQx8mANy7UEoQUaHu5tPcaeVefsDtFMT/TCaU1qpmrk3fvCHkgt2Ccmr9rwqxLr9jEwUBvveg0KPiprCxxUtBTOPowtKkZciJOIxD9rCH93s6QE5DI0Qh8jvjRDxAcwAnWz417Uz2HjcnOcqGllIxwgw64YcCY6G+YR4lbv+8LZuKDbfNcSRH17VY6sNkr9ytQtUXJX4Q143tMeA7v2i0SRoPVzcEkUtjQFbxa3cT/i4rfgIoZrusHgeQMh51R0Gvu0SRFyFrDrUF/WhB7A7qv/E/S3P7GRuoE+IhQHudqiEY=
+  - secure: Y7jF0UG2zC4j8zlhY7bOMnkssiN8ODtx8gxzYQRRffeC3diqbG83jrGf1SPMa0hHriDzClDm0DCXhV1/xg4yCsqIsXD8kSq/xF5suC5j8K8uO8zsWetqSejBtcYMtBvkIplLkYE77rMQEYXOvYCHMZN1+SE23r/g4N/IYGtRqwXWrwF6gKlkiNzqVAPsx5aTUBuPEMdRZfoqdBdvaSt3mK/Ndci3aehlDpyEufBSpTya/LITtu5DuhX9KraAy4kRcoM/+/VfJqGSvY9F2d4xx7xNMhalv2vlFOkr9ivzRnH1ROGMsbeoWBxHdGeU6AkQKyccUv/C4AffEGNK75jSSZce8e72lDz92SpWkbQ/vS8eGf9C/U/JlvNTreMTJEGq6SdLL3ukjLaED5K3lLX2PIlACydihz1bw33yaHTOWpTUMe2C9tRcAAcr/70/lY3LbqtC4dTqU0zpCvn+qxooyxot069JtthFbKcPTmXvMG02zMAUXBeYAGhgSaJtLBhSBCL9BN5LNYR0BXks+ZbdkDemiEOLqwO/EwMzu08DAr+Hl638laMPQfUOReaxpJ4VkeQZbFSsrvaNWO98ovK0zjMzf/2dhQ35OTPj24Lx4jePTv1iWrigkRsVdGn1OhuB+nQ4bqqhNrvc9wQYIH/Y+C0/4W+QjuJj+EH/fMhyTqU=
 before_install:
-  - curl -sLo /tmp/terraform.zip https://releases.hashicorp.com/terraform/0.9.8/terraform_0.9.8_linux_amd64.zip
-  - unzip /tmp/terraform.zip -d /tmp
-  - mkdir ~/bin
-  - mv /tmp/terraform ~/bin
-  - export PATH="~/bin:$PATH"
-
+- curl -sLo /tmp/terraform.zip https://releases.hashicorp.com/terraform/0.9.8/terraform_0.9.8_linux_amd64.zip
+- unzip /tmp/terraform.zip -d /tmp
+- mkdir ~/bin
+- mv /tmp/terraform ~/bin
+- export PATH="~/bin:$PATH"
 script: terraform plan ./terraform
-
 deploy:
 - provider: script
   skip_cleanup: true
