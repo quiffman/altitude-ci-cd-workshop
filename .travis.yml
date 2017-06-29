@@ -19,10 +19,10 @@ before_install:
 - mkdir ~/bin
 - mv /tmp/terraform ~/bin
 - export PATH="~/bin:$PATH"
-script: terraform plan ./terraform
+script: terraform plan
 deploy:
 - provider: script
   skip_cleanup: true
-  script: terraform apply ./terraform
+  script: terraform apply
   on:
     branch: master
